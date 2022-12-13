@@ -1,5 +1,8 @@
 import random
 import calculation as cal
+import sys
+sys.path.append('C:\\Users\\sophiechen\\2022MDS\\Block 3\\Data-533\\project-step-1-XiaCatQ\\BankAccountSystem\\Interface')
+import bankingDS as ds
 
 # generate account number
 available_acc_num = [i for i in range(10000,99999)]
@@ -29,6 +32,9 @@ class newUser(User):
         print(f'Account Number: {self.acc_num}')
         print(f'Open Date: {date}')
         print(f'Account Balance: {self.balance}')
+        
+    def store(self):
+        ds.addAccount(self.name, self.acc_num, self.init_dps, self.balance)
 
 class eUser(User):
     def __init__(self, name, acc_num, balance):
