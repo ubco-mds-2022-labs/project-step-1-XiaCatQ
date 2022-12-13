@@ -1,4 +1,5 @@
 import random
+import calculation as cal
 
 # generate account number
 available_acc_num = [i for i in range(10000,99999)]
@@ -40,9 +41,10 @@ class eUser(User):
         print(f'Your account balance is now: {self.balance}')
         
     def withdraw(self, amount, date):
+        amount = cal.service(amount)
         if amount > self.balance:
-            print("You cannot withdraw the amount over your balance")
-            print(f'Your account balance is {self.balance}')
+            print("You cannot withdraw the amount over your balance after service fee")
+            print(f'Your account balance is {self.balance}, Service fee is CAD 3')
         else:
             self.balance = self.balance - amount
             print(f'You withdraw {amount} on {date}')
