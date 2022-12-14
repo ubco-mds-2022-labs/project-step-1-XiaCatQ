@@ -19,12 +19,8 @@ class User():
 class newUser(User):
     def __init__(self, name, acc_num, init_dps):
         super().__init__(name, acc_num)
-        self.balance = 0
+        self.balance = init_dps
         self.init_dps = init_dps
-        
-    def deposit(self, date):
-        self.balance = self.balance + self.init_dps
-        print(f"You successfully deposit first deposit: {self.balance} on {date}")
         
     def information(self, date):
         print("Here is your account information")
@@ -45,6 +41,7 @@ class eUser(User):
         self.balance = self.balance + amount
         print(f"You successfully deposit {amount} on {date}")
         print(f'Your account balance is now: {self.balance}')
+        return self.balance
         
     def withdraw(self, amount, date):
         amount = cal.service(amount)
@@ -56,9 +53,6 @@ class eUser(User):
             print(f'You withdraw {amount} on {date}')
             print(f'Your account balance is {self.balance}')
     
-    def information(self, date):    
-        print("Here is your account information")
-        print(f'Name: {self.name}')
-        print(f'Account Number: {self.acc_num}')
-        print(f'Date: {date}')
-        print(f'Account Balance: {self.balance}')
+    def information(self, date):         
+        return f"Here is your account information \nName: {self.name}\nAccount Number: {self.acc_num}\nDate: {date}\nAccount Balance: {self.balance}"  
+    
