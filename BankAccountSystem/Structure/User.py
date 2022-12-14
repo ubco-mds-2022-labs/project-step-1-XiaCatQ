@@ -52,6 +52,7 @@ class eUser(User):
             self.balance = self.balance - amount
             print(f'You withdraw {amount} on {date}')
             print(f'Your account balance is {self.balance}')
+            return self.balance
     
     def information(self, date):         
         return f"Here is your account information \nName: {self.name}\nAccount Number: {self.acc_num}\nDate: {date}\nAccount Balance: {self.balance}"  

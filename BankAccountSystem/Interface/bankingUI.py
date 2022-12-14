@@ -5,6 +5,7 @@ import bankingDS as ds
 import sys
 sys.path.append('C:\\Users\\sophiechen\\2022MDS\\Block 3\\Data-533\\project-step-1-XiaCatQ\\BankAccountSystem\\Structure')
 import User as U
+import calculation as Cal
 
 from tkinter import *
     
@@ -49,7 +50,7 @@ def signup():
     Entry(signup_screen, textvariable = temp_initialAmount).grid(row = 2, column = 0)
     
     # Button
-    Button(signup_screen, text="Sign up", command = finish_signup, width = 15, font = ("Calibri", 11)).grid(row = 3, sticky = N, pady = 10)
+    Button(signup_screen, text="Sign up", command = finish_signup, width = 15, font = ("Calibri", 11)).grid(row = 4, sticky = N, pady = 10)
 
 def finish_signup():
     name = temp_name.get()
@@ -141,12 +142,58 @@ def deposit():
     
     # Entry
     Entry(deposit_screen, textvariable = temp_dep_amount).grid(row = 1, column = 1, padx = 5)
-    Entry(deposit_screen, textvariable = temp_dep_date, show = "*").grid(row = 2, column = 1, padx = 5)
+    Entry(deposit_screen, textvariable = temp_dep_date).grid(row = 2, column = 1, padx = 5)
                 
     #Buttons
     Button(deposit_screen, text = "Confirm Deposit", command = finish_deposit, font = ("Calibri", 11), width = 30).grid(row = 3, sticky = N, padx = 10)
-    
+       
 def finish_deposit():    
+    file = open(signin_name, "r")
+    file_data = file.read()
+    user_data = file_data.split("\n")
+    print(user_data)
+    details_name = user_data[0]
+    details_accNum = user_data[1]
+    details_initial = user_data[2]
+    details_balance = user_data[3]
+    file.close()
+    E = U.eUser(details_name, details_accNum, int(details_balance))
+    
+    file =  open(signin_name, "w") 
+    file.write(details_name + '\n')
+    file.write(details_accNum + '\n')
+    file.write(details_initial + '\n')
+    file.write(str(E.deposit(int(temp_dep_amount.get()), temp_dep_date)) + '\n')  # renew balance
+    file.write("Deposit " + temp_dep_date.get() +": " + temp_dep_amount.get() + '\n')  # record transaction
+    file.close()
+
+    
+def withdraw():
+    global temp_w_amount
+    global temp_w_date
+    global temp_w_currency
+    temp_w_amount = StringVar()
+    temp_w_date = StringVar()
+    temp_w_currency = StringVar()
+    
+    withdraw_screen = Toplevel(master)
+    withdraw_screen.title("Withdraw")
+    withdraw_screen.geometry('400x300')
+    #Labels
+    Label(withdraw_screen, text = "Withdraw Page", font = ("Calibri", 11)).grid(row = 0, sticky = N, pady = 10)
+    Label(withdraw_screen, text = "Amount", font = ("Calibri", 11)).grid(row = 1, sticky = W)
+    Label(withdraw_screen, text = "Date", font = ("Calibri", 11)).grid(row = 2, sticky = W)
+    Label(withdraw_screen, text = "Currency", font = ("Calibri", 11)).grid(row = 3, sticky = W) # CAD or TWD
+    
+    # Entry
+    Entry(withdraw_screen, textvariable = temp_w_amount).grid(row = 1, column = 1, padx = 5)
+    Entry(withdraw_screen, textvariable = temp_w_date).grid(row = 2, column = 1, padx = 5)
+    Entry(withdraw_screen, textvariable = temp_w_currency).grid(row = 3, column = 1, padx = 5)
+                
+    #Buttons
+    Button(withdraw_screen, text = "Confirm Withdraw", command = finish_withdraw, font = ("Calibri", 11), width = 30).grid(row = 4, sticky = N, padx = 10)
+    
+def finish_withdraw(): 
     file = open(signin_name, "r")
     file_data = file.read()
     user_data = file_data.split("\n")
@@ -154,11 +201,24 @@ def finish_deposit():
     details_accNum = user_data[1]
     details_initial = user_data[2]
     details_balance = user_data[3]
-    E = U.eUser(details_name, details_accNum, int(details_balance))
-    user_data[3] = E.deposit(int(temp_dep_amount), temp_dep_date)
-    file.close()
+    file.close() 
     
-def withdraw():
+    E = U.eUser(details_name, details_accNum, int(details_balance))
+    if temp_w_currency.get() == "TWD":
+        print(Cal.getEXRates())
+        WM = E.withdraw(round(int(temp_w_amount.get()) / Cal.getEXRates(),0), temp_w_date)
+    else:
+        WM = E.withdraw(int(temp_w_amount.get()), temp_w_date)
+    
+    file =  open(signin_name, "w") 
+    file.write(details_name + '\n')
+    file.write(details_accNum + '\n')
+    file.write(details_initial + '\n')
+    file.write(str(WM) + '\n')  # renew balance
+    file.write("Withdraw " + temp_w_date.get() +": " + temp_w_amount.get() + '\n')  # record transaction
+    file.close()
+        
+
     
 def signin():
     # Vars
