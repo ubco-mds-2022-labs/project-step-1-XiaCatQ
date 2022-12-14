@@ -183,7 +183,7 @@ def withdraw():
     Label(withdraw_screen, text = "Withdraw Page", font = ("Calibri", 11)).grid(row = 0, sticky = N, pady = 10)
     Label(withdraw_screen, text = "Amount", font = ("Calibri", 11)).grid(row = 1, sticky = W)
     Label(withdraw_screen, text = "Date", font = ("Calibri", 11)).grid(row = 2, sticky = W)
-    Label(withdraw_screen, text = "Currency", font = ("Calibri", 11)).grid(row = 3, sticky = W) # CAD or TWD
+    Label(withdraw_screen, text = "Currency (CAD/TWD)", font = ("Calibri", 11)).grid(row = 3, sticky = W) # CAD or TWD
     
     # Entry
     Entry(withdraw_screen, textvariable = temp_w_amount).grid(row = 1, column = 1, padx = 5)
