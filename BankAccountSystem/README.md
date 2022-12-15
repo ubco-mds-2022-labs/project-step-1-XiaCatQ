@@ -11,6 +11,7 @@ The 4 main purposes of this program are:
 3. Exchange money 
 4. View the account’s records   
 
+
 ## Sub-Package 1: Structure is mainly for establishing account objects and define functions for account value.
 
 ### Module 1 Establishing Objects:
