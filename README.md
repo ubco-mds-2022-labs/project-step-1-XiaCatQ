@@ -52,9 +52,9 @@ service(x): calculate the service fee of the account. While withdraw money, dedu
 Create a friendly interface for user.
 
 #### Functions: bankingUI.py
-main(): create the main interface for user. Input: nothing, output: nothing.\
-signup(): create the interface for user to sign up. Input: nothing, output: nothing.\
-finish_signup(): create the interface for user to finish sign up. Input: nothing, output: nothing.\
+main(): create the main interface for user. Input: nothing, output: screen with two options.\
+signup(): create the interface for user to sign up. Input: nothing, output: name(str), initial deposit(str).\
+finish_signup(): create the interface for user to finish sign up. Input: name(str), initial deposit(str), output: account information(text).\
 signin_session(): create the interface for user to sign in. Input: nothing, output: nothing.\
 personal_details(): create the interface for user to view personal details. Input: nothing, output: nothing.\
 deposit(): create the interface for user to deposit money. Input: nothing, output: nothing.\
@@ -69,7 +69,7 @@ Record Transactions (e.g. date, amount, action,..)
 
 #### Functions: bankingDS.py
 addAccount(n, aN, iA, B): add a new account to the database. Input: name (str), account number (int), initial amount
-(float), balance (float), output: nothing.\
+(float), balance (float), output: text file.\
 validate(n, aN): validate the account number and name. Input: name (str) and account number (int), output: True or False.\
 delAccount(n, aN): delete the account from the database. Input: name (str) and account number (int), output: nothing.\
 
