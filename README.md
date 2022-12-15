@@ -2,7 +2,7 @@
 
 This is a simple bank account system that allows you to perform the essential functions of banking software.
 It allows you to create a bank account, deposit money, withdraw money, and check your balance. It also allows you to 
-create multiple accounts and switch between them. The program is written in a way that allows for easy expansion and
+withdraw money in different currency. The program is written in a way that allows for easy expansion and
 modification. 
 
 The 4 main purposes of this program are:
