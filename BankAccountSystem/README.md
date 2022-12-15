@@ -9,7 +9,7 @@ The 4 main purposes of this program are:
 1. Create a new account 
 2. Make deposits and withdrawals 
 3. Exchange money 
-4. View the account’s records 
+4. View the account’s records   
 
 
 ## Sub-Package 1: Structure is mainly for establishing account objects and define functions for account value.
