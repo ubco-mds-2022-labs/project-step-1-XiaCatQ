@@ -25,12 +25,12 @@ User(): initialize the user’s information. Input: name (str) and account numbe
 newUser(): initialize the new user’s information. Input: name (str), output: nothing.\
 eUser(): initialize the existing user’s information. Input: name (str) and account number (int), output: nothing.\
 information(self, date): print the user’s information. Input: date (str), output: nothing.\
-store(self): store the user’s information. Input: nothing, output: nothing.\
+store(self): store the user’s information. Input: name (str) and account number (int), a, output: information (txt).\
 deposit(self, amount, date): deposit money into the account, with a date. And print out the deposit amount and the new
-balance. Input: amount (float) and date (str), output: nothing.\
+balance. Input: amount (float) and date (str), output: balance (int).\
 withdraw(self, amount, date): withdraw money from the account, with a date. And print out the withdraw amount and the
 new balance. If the balance is not enough, print out the message that the balance is not enough. Input: amount (float) and
-date (str), output: nothing.\
+date (str), output: balance (int).\
 information(self, date): print the user’s account information. Input: date (str), output: account information (str).\
 
 
